@@ -62,7 +62,7 @@ export function QRCodeGenerator() {
                 <input
                   type="range"
                   min="128"
-                  max="420"
+                  max="512"
                   value={options.size}
                   onChange={(e) =>
                     setOptions({ ...options, size: Number(e.target.value) })

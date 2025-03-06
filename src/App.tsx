@@ -8,6 +8,7 @@ import {
 import { Toaster } from "react-hot-toast";
 import { AuthForm } from "./components/Auth/AuthForm";
 import { QRCodeGenerator } from "./components/QRCode/QRCodeGenerator";
+import { Navbar } from "./components/Navbar/Navbar";
 import { supabase } from "./lib/supabase";
 
 function App() {
@@ -41,16 +42,19 @@ function App() {
     <>
       <Toaster position="top-right" />
       <Router>
-        <Routes>
-          <Route
-            path="/auth"
-            element={session ? <Navigate to="/" /> : <AuthForm />}
-          />
-          <Route
-            path="/"
-            element={session ? <QRCodeGenerator /> : <Navigate to="/auth" />}
-          />
-        </Routes>
+        {session && <Navbar />}
+        <main className="pt-4">
+          <Routes>
+            <Route
+              path="/auth"
+              element={session ? <Navigate to="/" /> : <AuthForm />}
+            />
+            <Route
+              path="/"
+              element={session ? <QRCodeGenerator /> : <Navigate to="/auth" />}
+            />
+          </Routes>
+        </main>
       </Router>
     </>
   );
